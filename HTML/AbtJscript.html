@@ -1,0 +1,268 @@
+<!doctype html>
+<html>
+
+<head>
+	<style type="text/css">
+	a:link
+			{
+				color:beige;
+			}
+			
+			a:active
+			{
+				background-color:white;
+				color:azure;
+			}
+			
+			a:visited
+			{
+				color:cyan;
+				text-decoration:none;
+			}
+			
+			a:hover
+			{
+				color:black;
+				background-color:aqua;
+				font-style:italic;
+				text-decoration:underline;
+				font-weight:bold;
+			}
+	</style>
+	<script language="javascript">
+	
+function prom()
+{
+	var pr=prompt("Enter text");				<!--PROMPT DIALOG BOX-->
+	if(pr)
+	{
+	document.f.tf.value=pr;
+	}
+
+	else
+	{
+	document.f.tf.value="Don't be a git";
+	}
+}
+
+function gor()
+{
+
+if(confirm("Inside RED"))					<!--CONFIRM DIALOG BOX-->
+{window.open("Abt.html");}
+
+else
+{
+	if(document.f.tf.value=="")
+	{
+	document.write("<body bgcolor=red><h1>Red</h1></body>");
+	}
+		
+	else
+	{
+	document.write("<body bgcolor=red><h1><font color=document.f.tf.value>Red</font></h1></body>");
+	}
+}
+
+}
+
+function gob()
+{
+	
+if(confirm("Inside BLUE"))					<!--CONFIRM DIALOG BOX-->
+	
+{
+var n=window.open("newblue.html",null,"height=400,width=400,status=no,");
+n.document.write("<body bgcolor=blue><h1><font color=gold>NewBlue</font></h1></body>");
+}
+
+else
+{	
+	if(document.f.tf.value=="")
+	{
+	document.write("<body bgcolor=blue><h1>Blue</h1></body>");
+	}
+	
+	else
+	{
+	document.write("<body bgcolor=blue><h1><font color=document.f.tf.value>Blue</font></h1></body>");
+	}
+}	
+
+}
+	
+function go()
+{
+		document.f.tf.value=document.f.h.value;
+}
+
+function gof()
+{
+		window.alert("Inside gof");			<!--ALERT DIALOG BOX-->
+
+		document.f.tf.value="Family Guy";
+}
+
+function clicked()
+{
+
+	alert("Inside clicked");				<!--ALERT DIALOG BOX-->
+	
+	if(document.f.c1.checked)													<!--COULD BE BETTER-->
+	{
+	if(document.f.c2.checked)
+	document.f.tf.value="Simpsons & Southpark";
+	else
+	document.f.tf.value="Simpsons";
+	}
+	
+	if(document.f.c2.checked)
+	{
+	if(document.f.c1.checked)
+	document.f.tf.value="Southpark & Simpsons";
+	else
+	document.f.tf.value="Southpark";
+	}
+
+}
+
+function show()
+{
+		document.f.tf.value=document.f.p.value;	
+}
+
+function rad()																	<!--SOMETHING FISHY HERE-->
+{
+		if(document.f.rby.checked)
+		{document.f.tf.value="YES"; return;}
+		else if(document.f.rbn.checked)
+		{document.f.tf.value="NO"; return;}
+		else
+		{document.f.tf.value="Don't Know !"; return;}
+}
+
+function area()
+{
+		if(document.f.ta.value){window.location=document.f.ta.value;}
+
+		else{alert("enter");}				<!--ALERT DIALOG BOX-->
+}
+
+function sel()
+{
+			
+		if(confirm("Inside sel"))			<!--CONFIRM DIALOG BOX-->
+	{
+	switch(document.f.s1.selectedIndex)
+	{
+		case 1:
+		document.f.tf.value="SouthPark";
+		break;
+		case 2:
+		document.f.tf.value="FamilyGuy";
+		break;		
+		case 3:
+		document.f.tf.value="Simpsons";
+		break;
+		case 4:
+		document.f.tf.value="BlackAdder";
+		break;		
+		case 5:
+		document.f.tf.value="BillMaher";
+		break;
+		default:
+		document.f.tf.value="None";
+				
+	}
+
+	}
+}
+
+function fo()
+{
+	alert("Come On !");					<!--ALERT DIALOG BOX-->
+}
+
+function gold()
+{
+	alert("Inside gold");				<!--ALERT DIALOG BOX-->
+	document.bgcolor=red;
+}
+	</script>
+
+
+</head>
+	<body bgcolor=#880141 onLoad="alert('Right Here !');" onUnload="alert('See ya !');">
+		<center>
+			<form name=f >
+	<a href=#Bagwell title="T-Bag">Teddy</a>										<!--LINK WITHIN THE PAGE-->
+	<br/><br/>	
+	<input type=text name="tf" size=20 value="" onClick="prom();"/>	<!--TEXT BOX-->
+	<br/><br/>
+	<input type=button value="GO Red" onClick="gor();"/>		<!--INPUT BUTTONS-->	
+	<br/><br/>
+	<input type=button value="GO Blue" onClick="gob();"/>
+	<br/><br/>
+	<input type=button value="???" onClick="go();"/>		<!--HIDDEN-->
+	<br/><br/>
+	<input type=hidden name=h value="suck my balls"/>		
+	<br/><br/>
+	<input type=checkbox name=c1 onClick="clicked();"/> <img src="D:\Pics\homer.jpg" width=100 height=100/>						<!--CHECKBOX-->
+	<br/><br/>
+	<input type=checkbox name=c2 onClick="clicked();"/> <img src="D:\Pics\southpark_cartman.gif" width=100 height=100/>			<!--CHECKBOX-->
+	<b/r><br/>
+	<input type=password name="p" size=20  onClick="show();"/>	<!--PASSWORD-->
+	<br/><br/>
+	<input type=radio name=rby onClick="rad();"/>YES		<!--RADIO BUTTONS-->
+	<br/><br/>
+	<input type=radio name=rbn onClick="rad();"/>NO
+ 	<br/><br/>
+	<input type=reset value="XXX"/>				<!--RESET-->
+	<br/><br/>
+							
+
+	<textarea name=ta rows=15 cols=10 value="http://www.gmail.com" onClick="area();"></textarea>						<!--TEXTAREA-->				
+	<br/><br/>
+														
+	<button type=button onClick="gof();"> <img src="D:\Pics\stewie.jpg" width=100 height=100 align=middle></button>				<!--BUTTON-->
+	<br/><br/>
+
+	<select name=s1 onChange="sel();">			<!--SELECT CONTROL-->
+		
+		<option>
+		<optgroup label=Toons>
+
+			<option>SouthPark
+			<option>FamilyGuy
+			<option>Simpsons
+		
+		</optgroup>
+
+		<optgroup label=TV>
+
+			<option>BlackAdder
+			<option>BillMaher
+					
+		</optgroup>
+	</select>
+	<br/><br/>
+	
+	<a href="javascript:fo()" 
+			onMouseOver="this.style.color='red'; this.style.fontSize='48';"  
+onMouseOut="this.style.color='black';this.style.fontSize='20';this.style.face='Comic Sans MS';" title="This is wierd !">
+
+	Come On !
+	</a>
+	<br/><br/>
+
+	<a name=Bagwell></a><img src="D:\Pics\bagwell.bmp" height=100 width=100 
+		
+			onMouseOver="this.src='D:\Pics\homer.jpeg'; this.style.cursor='hand';" 
+			
+			onMouseOut="this.src='D:\Pics\bagwell.bmp'; this.style.cursor='default'; "/>
+	
+		</form>
+		
+		</center>
+	</body>
+</html>

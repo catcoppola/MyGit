@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+
+<head>
+		<style>													<!--STYLE SHEET-->
+			body
+			{
+				background-image:url(homer.jpg);				<!--BACKGROUND IMAGE-->
+				background-repeat:repeat-y;
+				background-color:gold;
+				color:red;
+			}
+		
+			h2
+			{
+				background:blue;
+				padding-top:20px;								<!--PADDING-->				
+				padding-bottom:40px;
+				padding-left:25px;
+				padding-right:35px;
+				color:red;
+				border:     5px         gold         groove;	<!--BORDER-->
+                       <!--WIDTH--> <!--COLOR--> <!--STYLE-->			
+				width:200px;									<!--WIDTH-->
+				height:100px;
+			}
+			
+			h3
+			{
+				background:silver;
+				padding:20px;									<!--PADDING-->				
+				color:gold;
+				
+				border-top:red 5px groove;						<!--BORDER-->
+				
+				border-bottom:blue 5px inset;						
+				
+				border-left:yellow 5px outset;						
+				
+				border-right:green 5px dotted;						
+				
+			}
+			
+			button
+			{
+				background:pink;
+				margin-top:10px;								<!--MARGIN-->			
+				margin-bottom:10px;
+				margin-left:20px;
+				margin-right:20px;
+			}
+			
+			input
+			{
+				margin:10px;
+			}
+		</style>
+		
+<script type="text/javascript">
+function num(v)									<!--OBJECT CONSTRUCTOR-->
+{
+this.val=v;
+if(v%2==0) {this.class="Even";}
+else {this.class="Odd";}
+}
+
+	<!--	var a="\"4\"";		document.writeln(a);		var s=4;    	document.writeln(s);		document.writeln(a+" plus "+s+" is 8 "); -->
+		
+		function hey()
+		{
+			confirm("Hey");						<!--CONFIRM DIALOG BOX-->
+		}
+		
+		function fck(u)
+		{
+			alert("FUCK OFF!! "+u);				<!--ALERT DIALOG BOX-->
+		}
+		
+		function mul()
+		{
+		hey();
+		document.f1.t3.value=(document.f1.t1.value)*(document.f1.t2.value)+" "+Math.sqrt((document.f1.t1.value)*(document.f1.t2.value));		<!--SQUARE ROOT-->
+		}
+		
+		function eo()
+		{
+			if(document.f1.t4.value)
+			{
+			var m=new num(document.f1.t4.value);			<!--NEW OBJECT-->
+			document.f1.t4.value=m.val+" is "+m.class;
+			delete m;
+			}
+		}			
+		
+		function howdy()
+		{
+			var h=new Array();					<!--ARRAY-->	
+			h[0]=document.f1.t5.value;
+			h[1]=document.f1.t6.value;
+			h[2]=document.f1.t7.value;
+			h.push("!");						<!--ARRAY PUSH-->
+			var s1=h.join(" ");
+			document.f1.t8.value=s1;
+			
+			var s=h.join(document.f1.t9.value);		<!--ARRAY JOIN-->
+			confirm("Happy ?");						<!--CONFIRM DIALOG BOX-->
+			document.f1.t8.value=s;
+			
+			h.sort();							<!--ARRAY SORT-->
+			h.reverse();						<!--ARRAY REVERSE-->
+			
+		}
+		
+		function area()
+		{
+			var c=prompt("How many names do you want to sort?","Enter here.");			<!--PROMPT DIALOG BOX-->
+			
+			if(c)		
+			{		
+			var names=new Array();
+			
+			for(var i=0;i<c;i++)
+			{
+				names[i]=prompt("Enter value "+(i+1),"Type here.");						<!--PROMPT DIALOG BOX-->
+			}
+		
+			names.sort();
+			names.push("!");
+			var n=names.join(" ");
+			
+			document.f.ta.value=n;
+			}
+		}
+		
+		function area2()
+		{
+			var c=prompt("How many attributes do you want to enter?","Enter here.");			<!--PROMPT DIALOG BOX-->
+			
+			if(c)		
+			{	
+			var att= new Array();
+			
+			for(i=0;i<c;i++)
+			{
+				att[i]=prompt("Enter attribute "+(i+1),"Type here.");
+			}
+			
+			var a=att.join(" ");
+			var you=new Array();
+			
+			for(i=0;i<c;i++)
+			{
+				you[att[i]]=prompt("Enter your "+att[i],"Type here.");							<!--ASSOCIATIVE ARRAY-->
+			}
+			
+			var y=you.join(" ");
+			document.f.ta2.value=y;																<!--??????????-->
+			}
+		}
+		
+		function here()
+		{
+			var now=new Date();
+			document.forms[0].t2.value=now.getHours()+" Hours "+now.getMinutes()+" Minutes and "+now.getSeconds()+" Seconds and counting";
+		s}
+		
+		function nowtime()
+		{
+			setInterval("here();",1000);
+		}
+</script>
+</head>
+
+<body>
+	<center>
+									<h3>Form 1</h3>
+		<form name=f align=center>
+			My name is <input type="text" value="" name=t1 onClick="fck(t1.value);"/>
+			<br/>
+			<input type="button" value="don't click" onClick="fck(t1.value);"/>	
+			<br/>
+		Sort these names <textarea name=ta rows=5 cols=10 value="Click me !" onClick="area();"></textarea>					<!--TEXTAREA-->				
+			<br/>
+			Associative	<textarea name=ta2 rows=5 cols=10 value="Click me !" onClick="area2();"></textarea>					<!--TEXTAREA-->
+			<br/>
+		Do you want the time ? <button type=button onClick="nowtime();"><img src="D:\Pics\southpark_cartman.gif" width=100 height=100 align=middle></button>		<!--BUTTON-->
+			<br/>
+			<input type="text" value="" name=t2 size=50/>
+		</form>
+		<br/>
+		<hr/>
+									<h2>Form 2</h2>
+		<form name=f1 bgcolor="red" align=center>
+			Number 1 <input type="text" value="" name=t1/>
+			<br/>
+			Number 2 <input type="text" value="" name=t2/>
+			<br/>
+			Multiply <input type="button" value="here" onClick="mul();"/>
+			<br/>
+			No Big Deal, I'll even give you the root <input type="text" name="t3"/> 
+			<br/>
+			Even or Odd ? <input type="text" name="t4" value="" onClick="eo();"/>
+			<br/>
+			First Name <input type="text" name="t5" value=""/>
+			<br/>
+			Middle Name <input type="text" name="t6" value=""/>
+			<br/>
+			Last Name <input type="text" name="t7" value=""/>
+			<br/>
+			Enter Special Character <input type="text" name="t9" value=""/>
+			<br/>
+			Hello <input type="text" name="t8" value="Click Me !" onClick="howdy();"/>
+			<br/>	
+		</form>
+	</center>	
+</body>
+</html>
