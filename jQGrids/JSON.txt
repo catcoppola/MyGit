@@ -1,0 +1,71 @@
+/* Here we can see the code snippet which is responsible for creating JSON data for the grid */
+
+public String displayABTGrid(String date) throws SQLException
+	{
+		ABTGridDAO adpfiddao = new ABTGridDAO();
+		ArrayList<ABTGrid> fidlist=adpfiddao.showABTGrid(date); // fidlist is a linked list containing data corresponding to our base class.
+		
+		JSONObject root = new JSONObject();
+		JSONArray rows = new JSONArray();
+		
+		// the base class contains these data members
+
+		String BusinessDate;
+		String BookId;
+		String Symbol;
+		int Account;
+		int Age;
+		float ADPposition;
+		float IDposition;
+		float Difference;
+		String output="";
+
+		int i=0;
+        
+	// iterate over the linked list 
+
+        for (ABTGrid af : fidlist)	
+        {
+		   	i++;
+        	
+        	 JSONArray cell = new JSONArray();
+    		 JSONObject record = new JSONObject();
+    	
+		 // use af to get the values of all data members
+	
+    	 	 BusinessDate=af.getBusinessDate();
+		 BookId=af.getBookId();
+		 Symbol=af.getSymbol();
+		 Account=af.getAccount();
+		 Age=af.getAge();
+		 ADPposition=af.getADPposition();
+		 IDposition=af.getIDposition();
+		 Difference=af.getDifference();
+        
+        cell.add(BusinessDate);
+        cell.add(BookId);
+        cell.add(Account);
+        cell.add(Symbol);
+        cell.add(ADPposition);
+        cell.add(IDposition);
+        cell.add(Difference);
+        cell.add(Age);
+ 
+        record.put("id",String.valueOf(i));	// setting the row ID. this is optional
+  		record.put("cell",cell);
+        
+  		rows.add(record); 
+        
+        }
+        
+		
+		root.put("page","");
+		root.put("total","");
+		root.put("records","");
+		root.put("rows",rows);
+		
+		output=root.toString();
+	
+		return output;	//return JSON string to the grid
+	}
+}
