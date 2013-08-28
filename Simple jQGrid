@@ -1,0 +1,60 @@
+/* Here is a code snippet of a jsp file which creates a basic grid */
+ <script>
+
+  jQuery(document).ready(function(){ 
+
+  jQuery("#list").jqGrid({
+
+	  datatype: 'json',
+		
+url:'adpfidfeeder.jsp?ctlSelectedDate=<%= request.getParameter("ctlSelectedDate")%>',	// adpfidfeeder will supply JSON 
+
+data to this grid
+
+colNames: ['Business Date', 'Book ID', 'Account ', 'Symbol', 'ADP Position', 'FID Position', 'Difference', 'Age'],
+  
+colModel: [
+             
+{name: 'fdate', index: 'fdate', width: 100, sorttype: 'date', align: 'center',datefmt: 'Y-m-d',
+	search:true, stype:'text'},
+{name: 'book', index: 'book', width: 300, sorttype: 'text', align: 'center',
+	search:true, stype:'text'},
+{name: 'account', index: 'account', width: 100, align: 'center', sorttype: 'float',key:true,
+	search:true, stype:'text'},
+{name: 'symbol', index: 'symbol', width: 100, align: 'center', sorttype: 'text',
+	 search:true, stype:'text'},
+{name: 'adp', index: 'adp', width: 100, align: 'center', sorttype: 'float',
+	search:true, stype:'text'},
+{name: 'fid', index: 'fid', width: 100, align: 'center', sorttype: 'float',
+	search:true, stype:'text'},
+{name: 'diff', index: 'diff', width: 100, align: 'center', sorttype: 'float',
+	search:true, stype:'text'},
+{name: 'age', index: 'age', width: 100, align: 'center', sorttype: 'float',
+	search:true, stype:'text'}
+  ],
+
+  pager: "#pager",		//Identifying the navigation bar
+  rowNum: 500,			// how many rows to display on page 1
+  rowList: [500,1000, 2000, 3000,4000],	//values for the dropdown which specifies how many rows to show 
+  sortorder: "desc", //the order of sorting by default
+  viewrecords: true, // displays total number of rows
+  gridview: true,
+  autoencode: true,
+  height:400, //height of the grid
+  multiselect:true,	// checkboxes before each row
+  multiboxonly: true,
+  loadonce:true, //for client side sorting, searching and pagination
+  caption:"This is me" // caption for the grid header
+  
+  }).navGrid('#pager',{edit:false,add:false,del:false,search:true,refresh:true});
+  
+	// the following code is responsible for converting the datatype on each refresh.
+	// this ensures that there is local pagination and sorting
+
+      jQuery("#refresh_list").click(function(){
+      jQuery("#list").setGridParam({datatype: 'json'});
+      jQuery("#list").trigger("reloadGrid");
+  });
+}); 
+  
+         </script>

@@ -5,23 +5,30 @@ package AbtC4;
  * @author abtpst
  */
 
-public class Board {
+// This class represents the playing board
+public class Board 
+{
 	public final int rows = 5;
 	public final int columns = 4;
 	public char board[][] = new char[rows][columns];
 	
-	public Board() {
+	public Board() 
+        {
 		initializeBoard();
 		showContent();
 	}
 	
+        // initialize the board with blank values
 	public void initializeBoard() {
 		for (int i = 0; i < rows; i++)
 			for (int j = 0; j < columns; j++)
 				board[i][j] = ' ';
 	}
 	
-	public void showContent() {
+        
+        // display the current board
+	public void showContent() 
+        {
 		System.out.println(" 0  1  2  3");
 		for (int j = 0; j < rows; j++) {
 			for (int k = 0; k < columns; k++)
@@ -31,7 +38,9 @@ public class Board {
 		
 	}
 
-	public boolean insert(int column, char currentPlayer) {
+        // perform PUSH operation
+	public boolean insert(int column, char currentPlayer) 
+        {
 		if (column > 3 || column < 0 || board[0][column] != ' ')
 			return false;
 		else { 
@@ -43,8 +52,9 @@ public class Board {
 			return true;
 			}
 	}
-        
-        public boolean Pop(int c, char currentPlayer)
+      
+      // perform POP operation  
+      public boolean Pop(int c, char currentPlayer)
       {
                  if(board[4][c]==currentPlayer)
                   {
@@ -53,7 +63,11 @@ public class Board {
                       {
                           board[i][c]=board[i-1][c];
                           i--;
+                          if(board[i][c]==' ')
+                              break;
                       }
+                      if(i==0)
+                          board[0][c]=' ';
                       return true;
                   }
                   else
@@ -63,7 +77,22 @@ public class Board {
                    return false;
                   }
       }
-	
+      
+      // restore the board after the most recent POP
+       public void PopRestore(int c, char r)
+        {
+            int i=4;
+            while(board[i][c]!=' ')
+                    i--;
+            while(i<4)
+            {
+                board[i][c]=board[i+1][c];
+                i++;
+            }
+            board[4][c]=r;
+        }
+       
+       // restore the board after the most recent PUSH
 	public void remove(int column) {
 		for (int i = 0; i < rows; i++) {
 			if (board[i][column] != ' ') {
@@ -73,6 +102,7 @@ public class Board {
 		}
 	}
 	
+        // check for victory
 	public char isFinished() {
 		//check for win horizontally
 		for (int row=0; row<rows; row++) 
@@ -109,34 +139,25 @@ public class Board {
 		return ' ';
 	}
 	
-	public boolean isTie() {
+        // check if the game is tied (the board is full)
+	public boolean isTie() 
+        {
 		for (int j = 0; j < columns; j++)
 				if (board[0][j] == ' ')
 					return false;
 		return true;
 	}
-		
+	
+        // check whether a PUSH move is valid
 	public boolean isLegalMove(int column) {
 		if (column > 3 || column < 0 || board[0][column] != ' ')
 			return false;
 		return true;
 	}
 	
-	/**
-	 * This method implements the evaluation function by taking into
-	 * account the two-dimensional array evaluationTable.
-	 */
-	public int evaluateContent() {
-		/*int utility = 128;
-		int sum = 0;
-		for (int i = 0; i < rows; i++)
-			for (int j = 0; j <columns; j++)
-				if (board[i][j] == 'O')
-					sum += evaluationTable[i][j];
-				else if (board[i][j] == 'X')
-					sum -= evaluationTable[i][j];
-		return utility + sum;
-	*/
+	// calculate the utility value 
+        public int evaluateContent() 
+        {
             int val=0;    
             int val2=0;
             int val3=0;
@@ -144,7 +165,7 @@ public class Board {
             int v;
             int vB;
             int vR;
-            //2s in Rows
+            
             int j;
             int i;
             
