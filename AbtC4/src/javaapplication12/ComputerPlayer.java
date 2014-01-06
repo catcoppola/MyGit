@@ -1,18 +1,22 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication12;
+
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author abtpst
  */
-package AbtC4;
-
-/*This is the class which represents the computer player*/
 public class ComputerPlayer 
 {
-	private char mySymbol = 'B';    // The computer has a symbol B for Black
+    private char mySymbol = 'B';    // The computer has a symbol B for Black
 	private char opponentSymbol = 'R';  // The human player has a symbol R for Red
 	private int searchLimit;    // searchlimit is the maximum depth of the algorithm
 	private int maxColumn;      // maxcolumn represents the optimal column number 
-                                    //if the computer chooses a PUSH operation 
+        private static int dp=0;                            //if the computer chooses a PUSH operation 
         private int popColumn;      // popcolumn represents the optimal column number 
                                     //if the computer chooses a POP operation
 	private int [] poparray={4,4,4,4};  //this array stores the column numbers where  a POP is possible
@@ -69,9 +73,9 @@ public class ComputerPlayer
         // This function displays the statistics for this game
 	public void stats()
         {
-            System.out.println("Nodes generated = "+Nodegen+
+            JOptionPane.showMessageDialog(null,"Nodes generated = "+Nodegen+
                     "\n Prunings at Max Nodes = "+Maxprunings+
-                    "\n Prunings at Min Nodes = "+Minprunings);
+                    "\n Prunings at Min Nodes = "+Minprunings+"\nLevels "+dp);
         }
 	/**
 	 * This method returns the highest utility value that is possible
@@ -80,7 +84,7 @@ public class ComputerPlayer
          * that are associated with the column with the highest maxValue value.
 	 */
 	private int maxValue(Board board, int depth, int alpha, int beta) {
-	
+	dp++;
             // check for victory
             if (board.isFinished() != ' ')
 			if (board.isFinished() == mySymbol)
@@ -148,7 +152,7 @@ public class ComputerPlayer
 	 * for the min player by starting from the passed board state.
 	 */
 	private int minValue(Board board, int depth, int alpha, int beta) {
-	
+	dp++;
             // check for victory	
             if (board.isFinished() != ' ')
 			if (board.isFinished() == mySymbol)

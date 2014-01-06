@@ -1,14 +1,16 @@
-package AbtC4;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication12;
 
 /**
  *
  * @author abtpst
  */
-
-// This class represents the playing board
 public class Board 
 {
-	public final int rows = 5;
+    public final int rows = 5;
 	public final int columns = 4;
 	public char board[][] = new char[rows][columns];
 	
@@ -25,7 +27,12 @@ public class Board
 				board[i][j] = ' ';
 	}
 	
-        
+        public void Copy(char [][] a)
+        {    		for (int row=0; row<5; row++)
+                            for (int col=0; col<4; col++)
+                                board[row][col]=a[row][col];
+                            }
+
         // display the current board
 	public void showContent() 
         {
