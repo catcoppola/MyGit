@@ -1,15 +1,23 @@
-/* Here we can see the code snippet which is responsible for creating JSON data for the grid */
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-public String displayABTGrid(String date) throws SQLException
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+//This class is responsible for converting the back-end data to JSON format
+
+public class ABTGridView {
+	
+	@SuppressWarnings("unchecked")
+	public String displayABTGrid(String date) throws SQLException
 	{
+		
 		ABTGridDAO adpfiddao = new ABTGridDAO();
-		ArrayList<ABTGrid> fidlist=adpfiddao.showABTGrid(date); // fidlist is a linked list containing data corresponding to our base class.
+		ArrayList<ABTGrid> fidlist=adpfiddao.showABTGrid(date); // Submit the query to back-end and retrieve the data
 		
 		JSONObject root = new JSONObject();
 		JSONArray rows = new JSONArray();
 		
-		// the base class contains these data members
-
 		String BusinessDate;
 		String BookId;
 		String Symbol;
@@ -22,18 +30,15 @@ public String displayABTGrid(String date) throws SQLException
 
 		int i=0;
         
-	// iterate over the linked list 
-
-        for (ABTGrid af : fidlist)	
+		//Create JSON Data
+        for (ADPFidessa af : fidlist)
         {
 		   	i++;
         	
-        	 JSONArray cell = new JSONArray();
-    		 JSONObject record = new JSONObject();
-    	
-		 // use af to get the values of all data members
-	
-    	 	 BusinessDate=af.getBusinessDate();
+        JSONArray cell = new JSONArray();
+    	JSONObject record = new JSONObject();
+    		
+    	 BusinessDate=af.getBusinessDate();
 		 BookId=af.getBookId();
 		 Symbol=af.getSymbol();
 		 Account=af.getAccount();
@@ -51,7 +56,7 @@ public String displayABTGrid(String date) throws SQLException
         cell.add(Difference);
         cell.add(Age);
  
-        record.put("id",String.valueOf(i));	// setting the row ID. this is optional
+        record.put("id",String.valueOf(i));
   		record.put("cell",cell);
         
   		rows.add(record); 
@@ -66,6 +71,7 @@ public String displayABTGrid(String date) throws SQLException
 		
 		output=root.toString();
 	
-		return output;	//return JSON string to the grid
+		return output;
 	}
+
 }
